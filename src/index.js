@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StoreProvider } from './Store';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <StoreProvider>
     <App />
-  </StoreProvider>
+  </StoreProvider>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
