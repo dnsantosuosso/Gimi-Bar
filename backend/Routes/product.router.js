@@ -8,7 +8,7 @@ router.get('/seed', async (req, res) => {
   res.send(products);
 });
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
   console.log('We made the get / request');
   const { category } = req.query;
   const products = await Product.find(category ? { category } : {});

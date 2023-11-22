@@ -55,10 +55,13 @@ export const listCategories = async (dispatch) => {
   }
 };
 
+//TODO: Should be get request. Easy fix converted it to post so static files dont serve first
 export const listProducts = async (dispatch, categoryName = '') => {
   dispatch({ type: PRODUCT_LIST_REQUEST });
   try {
-    const { data } = await Axios.get(`/api/products/?category=${categoryName}`);
+    const { data } = await Axios.post(
+      `/api/products/?category=${categoryName}`
+    );
     console.log('We are here, we made the call successfully ', { data });
     return dispatch({
       type: PRODUCT_LIST_SUCCESS,
