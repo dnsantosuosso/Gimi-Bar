@@ -5,7 +5,7 @@ export default function Logo(props) {
   const styles = useStyles();
   return (
     <img
-      src="/images/logo.png"
+      src="/Images/logo.png"
       alt="Food order"
       className={props.large ? styles.largeLogo : styles.logo}
     ></img>
