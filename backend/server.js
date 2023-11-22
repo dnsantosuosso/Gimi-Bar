@@ -56,15 +56,13 @@ app.use('/api/stripe', stripe);
 
 const port = process.env.PORT || 4000;
 
-// Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, '..', 'build')));
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
-  });
-}
+// Anything that doesn't match the above, send back the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
 
 server.listen(port, () => {
   console.log(`Serve at http://localhost:${port}`);
