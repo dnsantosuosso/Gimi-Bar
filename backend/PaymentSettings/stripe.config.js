@@ -4,6 +4,8 @@ const Product = require('../Models/product.model');
 
 const TAX_RATE_ID = 'txr_1O37bEHYpdwksEMu0GF6Azus';
 
+const WEB_URL = 'https://gimibar-new-c45af49f0979.herokuapp.com/';
+
 //TODO: Do not hardcode key
 const stripe = require('stripe')(
   'sk_test_51NpwZLHYpdwksEMugDUYT2sOySYXivTCdhoxEK8BBYHKKxffXzirb0yy9UnippsJeA0YlfPQIkBZ25dMyeKKCu6900X8djmIIv'
@@ -56,8 +58,8 @@ router.post('/create-payment-link', async (req, res) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `http://localhost:3000/complete?orderId=${orderId}`,
-      cancel_url: 'http://localhost:3000/', //TODO: Cancel Screen
+      success_url: WEB_URL + `complete?orderId=${orderId}`,
+      cancel_url: WEB_URL, //TODO: Cancel Screen
     });
 
     return res.json({ url: paymentLink.url });
