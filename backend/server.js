@@ -15,7 +15,7 @@ const io = require('socket.io')(server, {
   cors: {
     origin: [
       'http://localhost:3000',
-      'https://gimibar-new-c45af49f0979.herokuapp.com/',
+      'https://gimibar-747b6688a2c4.herokuapp.com/',
     ],
     methods: ['GET', 'POST'],
   },
@@ -24,7 +24,7 @@ const io = require('socket.io')(server, {
 const corsOptions = {
   origin: [
     'http://localhost:3000',
-    'https://gimibar-new-c45af49f0979.herokuapp.com/',
+    'https://gimibar-747b6688a2c4.herokuapp.com/',
   ],
   optionsSuccessStatus: 204,
 };
