@@ -69,7 +69,7 @@ module.exports = (io) => {
     }
   });
 
-  router.get('/:id', async (req, res) => {
+  router.post('/:id', async (req, res) => {
     try {
       const order = await Order.findById(req.params.id);
       if (order) {

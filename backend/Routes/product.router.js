@@ -8,6 +8,7 @@ router.get('/seed', async (req, res) => {
   res.send(products);
 });
 
+//TODO: Should be get request. Easy fix converted it to post so static files dont serve first
 router.post('/', async (req, res) => {
   console.log('We made the get / request');
   const { category } = req.query;
