@@ -36,7 +36,6 @@
   "scripts": {
     "server": "node backend/server.js",
     "start": "react-scripts start",
-    "start:frontend": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

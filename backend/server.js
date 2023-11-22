@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const data = require('../data');
 const http = require('http');
 const socketIo = require('socket.io');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
@@ -54,6 +55,16 @@ app.use('/api/orders', orderRouter(io));
 app.use('/api/stripe', stripe);
 
 const port = process.env.PORT || 4000;
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, '..', 'build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+  });
+}
 
 server.listen(port, () => {
   console.log(`Serve at http://localhost:${port}`);
