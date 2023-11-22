@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const data = require('./data');
 const http = require('http');
 const socketIo = require('socket.io');
+const path = require('path');
 
 dotenv.config();
 
@@ -40,6 +41,16 @@ const stripe = require('./PaymentSettings/stripe.config');
 
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, 'build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  });
+}
 
 const port = process.env.PORT || 4000;
 
