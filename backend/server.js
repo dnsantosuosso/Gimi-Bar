@@ -9,6 +9,14 @@ const socketIo = require('socket.io');
 
 const app = express();
 
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../build')));
+
+// Anything that doesn't match the above, send back the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../build/index.html'));
+});
+
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
   cors: {
@@ -27,14 +35,6 @@ const corsOptions = {
   ],
   optionsSuccessStatus: 204,
 };
-
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, '../build')));
-
-// Anything that doesn't match the above, send back the index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../build/index.html'));
-});
 
 const BASE_URL = 'http://localhost:3000';
 

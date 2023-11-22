@@ -29,7 +29,7 @@ import io from 'socket.io-client';
 
 const WEB_URL = 'https://gimibar-new-c45af49f0979.herokuapp.com/';
 const WEB_URL2 = 'http://localhost:3000';
-const socket = io(WEB_URL2); // Assuming your backend runs on port 4000
+const socket = io(WEB_URL); // Assuming your backend runs on port 4000
 
 export default function AdminScreen(props) {
   const styles = useStyles();
