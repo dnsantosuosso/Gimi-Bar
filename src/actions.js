@@ -124,7 +124,7 @@ export const createOrder = async (dispatch, order) => {
 export const listOrders = async (dispatch) => {
   dispatch({ type: ORDER_LIST_REQUEST });
   try {
-    const { data } = await Axios.get(`/api/orders`);
+    const { data } = await Axios.post(`/api/orders/list`); //TODO should be get
     dispatch({ type: SCREEN_SET_WIDTH });
     return dispatch({
       type: ORDER_LIST_SUCCESS,
@@ -141,7 +141,7 @@ export const listOrders = async (dispatch) => {
 export const listQueue = async (dispatch) => {
   dispatch({ type: ORDER_QUEUE_LIST_REQUEST });
   try {
-    const { data } = await Axios.get(`/api/orders/placed-orders/queue`);
+    const { data } = await Axios.post(`/api/orders/placed-orders/queue`); //TODO should be get
     dispatch({ type: SCREEN_SET_WIDTH });
     return dispatch({
       type: ORDER_QUEUE_LIST_SUCCESS,

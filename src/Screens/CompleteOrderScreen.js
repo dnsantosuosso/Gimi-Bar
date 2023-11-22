@@ -26,7 +26,15 @@ export default function CompleteOrderScreen(props) {
       try {
         setLocalLoading(true);
         // Fetch the order by its orderId
-        const response = await fetch(`/api/orders/${orderId}`);
+        const response = await fetch(`/api/orders/${orderId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // Include a body if needed for your POST request
+        });
+
+        console.log(response);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -36,8 +44,8 @@ export default function CompleteOrderScreen(props) {
           setFetchedOrder(data);
 
           // Update the order to set isPaid and inProgress
-          const updateResponse = await fetch(`/api/orders/${orderId}`, {
-            method: 'PUT',
+          const updateResponse = await fetch(`/api/orders/action/${orderId}`, {
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },

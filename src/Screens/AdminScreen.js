@@ -28,7 +28,7 @@ import Axios from 'axios';
 import io from 'socket.io-client';
 
 const WEB_URL = 'https://gimibar-new-c45af49f0979.herokuapp.com/';
-const WEB_URL2 = 'http://localhost:3000';
+const WEB_URL2 = 'http://localhost:4000';
 const socket = io(WEB_URL); // Assuming your backend runs on port 4000
 
 export default function AdminScreen(props) {
@@ -65,7 +65,7 @@ export default function AdminScreen(props) {
 
   const setOrderStateHandler = async (order, action) => {
     try {
-      await Axios.put('/api/orders/' + order._id, { action: action });
+      await Axios.post('/api/orders/action/' + order._id, { action: action });
       listOrders(dispatch);
     } catch (err) {
       alert(err.message);
@@ -79,7 +79,8 @@ export default function AdminScreen(props) {
 
   const takeOrderHandler = async (order) => {
     try {
-      await Axios.put('/api/orders/' + order._id + '/take', {
+      await Axios.post('/api/orders/' + order._id + '/take', {
+        //TODO make put
         userId: user._id, // passing the user's ID in the request body
       });
       listOrders(dispatch);
