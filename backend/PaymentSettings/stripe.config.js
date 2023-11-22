@@ -40,7 +40,7 @@ router.post('/create-payment-link', async (req, res) => {
           currency: 'cad', // Adjust the currency if needed
           product_data: {
             name: product.name,
-            images: [`${BASE_URL}${product.image}`], // Note that `images` expects an array
+            images: [`${WEB_URL2}${product.image}`], // Note that `images` expects an array
           },
           unit_amount: product.price * 100, // Stripe wants the price in cents
         },
