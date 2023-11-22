@@ -13,7 +13,7 @@ import { useStyles } from '../styles';
 import { Alert } from '@material-ui/lab';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:4000'); // Assuming your backend runs on port 4000
+const socket = io('https://gimibar-new-c45af49f0979.herokuapp.com/'); // Assuming your backend runs on port 4000
 export default function QueueScreen(props) {
   const styles = useStyles();
 

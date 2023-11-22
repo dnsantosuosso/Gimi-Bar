@@ -27,6 +27,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "serve": "^14.2.1",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "stripe": "^13.5.0",
@@ -35,6 +36,7 @@
   "scripts": {
     "server": "node backend/server.js",
     "start": "react-scripts start",
+    "start:frontend": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
