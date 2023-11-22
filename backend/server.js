@@ -11,16 +11,6 @@ const app = express();
 
 const server = http.createServer(app);
 
-// Serve static files from the React frontend app
-console.log('DIRNAME IS ' + __dirname);
-// Serve static files from the React frontend app
-// app.use(express.static(path.join(__dirname, '../build')));
-
-// // Anything that doesn't match the above, send back the index.html file
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/../build/index.html'));
-// });
-
 const io = require('socket.io')(server, {
   cors: {
     origin: [
