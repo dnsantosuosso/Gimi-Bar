@@ -22,7 +22,7 @@ const io = require('socket.io')(server, {
   cors: {
     origin: [
       'https://gimibar-new-c45af49f0979.herokuapp.com/',
-      'http://localhost:3000',
+      'http://localhost:4000',
     ],
     methods: ['GET', 'POST'],
   },
@@ -31,12 +31,10 @@ const io = require('socket.io')(server, {
 const corsOptions = {
   origin: [
     'https://gimibar-new-c45af49f0979.herokuapp.com/',
-    'http://localhost:3000',
+    'http://localhost:4000',
   ],
   optionsSuccessStatus: 204,
 };
-
-const BASE_URL = 'http://localhost:3000';
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());

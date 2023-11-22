@@ -43,12 +43,14 @@ module.exports = (io) => {
     }
   });
 
-  router.get('/', async (req, res) => {
+  //TODO Make get
+  router.post('/list', async (req, res) => {
     const orders = await Order.find({ isDelivered: false, isCanceled: false });
     res.send(orders);
   });
 
-  router.get('/placed-orders/queue', async (req, res) => {
+  //TODO make get
+  router.post('/placed-orders/queue', async (req, res) => {
     try {
       const inProgressOrders = await Order.find(
         { inProgress: true, isCanceled: false },
@@ -69,6 +71,7 @@ module.exports = (io) => {
     }
   });
 
+  //TODO: change to get
   router.post('/:id', async (req, res) => {
     try {
       const order = await Order.findById(req.params.id);
@@ -82,8 +85,11 @@ module.exports = (io) => {
     }
   });
 
-  router.put('/:id', async (req, res) => {
+  //TODO Change to put
+  router.post('/action/:id', async (req, res) => {
+    console.log('Hello from post /id ');
     const order = await Order.findById(req.params.id);
+    console.log('LOGGY' + req.params.id);
     if (order) {
       if (req.body.action === 'ready') {
         order.isReady = true;
@@ -117,8 +123,9 @@ module.exports = (io) => {
     res.send(order);
   });
 
-  //Changes status of take
-  router.put('/:id/take', async (req, res) => {
+  //Changes status of take TODO make put
+  router.post('/:id/take', async (req, res) => {
+    console.log('Hello from post /id  take');
     const order = await Order.findById(req.params.id);
     console.log('Taken by ' + req.body.userId);
     if (order) {
