@@ -21,35 +21,33 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../build/index.html'));
 });
 
-// const io = require('socket.io')(server, {
-//   cors: {
-//     origin: [
-//       'http://localhost:3000',
-//       'https://gimibar-747b6688a2c4.herokuapp.com/',
-//     ],
-//     methods: ['GET', 'POST'],
-//   },
-// });
-
+//for prod
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:4000',
+    origin: ['https://gimibar-747b6688a2c4.herokuapp.com/'],
     methods: ['GET', 'POST'],
   },
 });
 
-// const corsOptions = {
-//   origin: [
-//     'http://localhost:3000',
-//     'https://gimibar-747b6688a2c4.herokuapp.com/',
-//   ],
-//   optionsSuccessStatus: 204,
-// };
+//for local
+// const io = require('socket.io')(server, {
+//   cors: {
+//     origin: 'http://localhost:4000',
+//     methods: ['GET', 'POST'],
+//   },
+// });
 
+//for prod
 const corsOptions = {
-  origin: ['http://localhost:4000'],
+  origin: ['https://gimibar-747b6688a2c4.herokuapp.com/'],
   optionsSuccessStatus: 204,
 };
+
+//for local
+// const corsOptions = {
+//   origin: ['http://localhost:4000'],
+//   optionsSuccessStatus: 204,
+// };
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
