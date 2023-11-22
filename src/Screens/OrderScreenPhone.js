@@ -38,6 +38,7 @@ import {
   clearOrder,
   removeFromOrder,
 } from '../actions';
+import data from '../data';
 import { useStyles } from '../styles';
 import { Store } from '../Store';
 import Logo from '../Components/Logo';
@@ -45,6 +46,7 @@ import { Label } from '@material-ui/icons';
 import { LOAD_SAVED_ORDER_ITEMS } from '../constants';
 
 export default function OrderScreen(props) {
+  const { categories } = data;
   const styles = useStyles();
   const [categoryName, setCategoryName] = useState('');
   const [quantity, setQuantity] = useState(1);
@@ -91,7 +93,7 @@ export default function OrderScreen(props) {
 
   const [quantities, setQuantities] = useState(initialQuantities);
 
-  const { categories, loading, error } = state.categoryList;
+  //const { categories, loading, error } = state.categoryList;
   const {
     products,
     loading: loadingProducts,
@@ -335,23 +337,17 @@ export default function OrderScreen(props) {
                   }}
                   label="Main Menu"
                 />
-                {loading ? (
-                  <CircularProgress />
-                ) : error ? (
-                  <Alert severity="error">{error}</Alert>
-                ) : (
-                  categories.map((category, index) => (
-                    <Tab
-                      key={index}
-                      classes={{
-                        root: styles.customTabRoot,
-                        selected: styles.selectedTab,
-                        textColorInherit: styles.unselectedTab,
-                      }}
-                      label={category.name}
-                    />
-                  ))
-                )}
+                {categories.map((category, index) => (
+                  <Tab
+                    key={index}
+                    classes={{
+                      root: styles.customTabRoot,
+                      selected: styles.selectedTab,
+                      textColorInherit: styles.unselectedTab,
+                    }}
+                    label={category.name}
+                  />
+                ))}
               </Tabs>
             </Grid>
           </Grid>
@@ -363,6 +359,7 @@ export default function OrderScreen(props) {
               ) : errorProducts ? (
                 <Alert severity="error">{errorProducts}</Alert>
               ) : (
+                Array.isArray(filteredProducts) &&
                 filteredProducts.map((product) => (
                   <Grid item md={12}>
                     <Card

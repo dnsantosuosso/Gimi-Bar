@@ -6,6 +6,7 @@ const { isAuth, isAdmin } = require('../utils/tokenCheck.js');
 const { tokenGenAndSign } = require('../utils/jwtAuth');
 const products = require('../Models/product.model.js');
 const Session = require('../Models/session.model.js');
+const Product = require('../Models/product.model');
 
 const userRouter = express.Router();
 
@@ -60,6 +61,22 @@ userRouter.post(
   })
 );
 
+// //product router
+// userRouter.get(
+//   '/',
+//   expressAsyncHandler(async (req, res) => {
+//     console.log('We made the get / request PRODUCT BRO');
+//     const { category } = req.query;
+//     const products = await Product.find(category ? { category } : {});
+//     res.send(products);
+//   })
+// );
+
+userRouter.post('/bro', (req, res) => {
+  console.log('Endpoint /bro accessed');
+  res.send('Hello from /bro');
+});
+
 //TODO: add email validation. DONE (Test)
 //post request to register user
 userRouter.post(
@@ -70,7 +87,7 @@ userRouter.post(
     });
     if (!doesUserExist) {
       console.log(
-        'User does not exist or was not found, so it can be registered'
+        'User does not exist or was not found, so it can be registered!!'
       );
       var pwRegExp = new RegExp(
         /(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$/

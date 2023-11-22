@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../Models/product.model');
-const data = require('../../data');
+const data = require('../../src/data');
 
 router.get('/seed', async (req, res) => {
   const products = await Product.insertMany(data.products);
@@ -9,6 +9,7 @@ router.get('/seed', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  console.log('We made the get / request');
   const { category } = req.query;
   const products = await Product.find(category ? { category } : {});
   res.send(products);
@@ -27,6 +28,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.get('/categories', (req, res) => {
+  console.log('We made the get /categories request');
   res.send(data.categories);
 });
 

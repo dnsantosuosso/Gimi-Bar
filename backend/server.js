@@ -2,12 +2,31 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const data = require('../data');
+const data = require('../src/data');
 const http = require('http');
 const path = require('path');
 const socketIo = require('socket.io');
 
 const app = express();
+
+const server = http.createServer(app);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: [
+      'https://gimibar-new-c45af49f0979.herokuapp.com/',
+      'http://localhost:3000',
+    ],
+    methods: ['GET', 'POST'],
+  },
+});
+
+const corsOptions = {
+  origin: [
+    'https://gimibar-new-c45af49f0979.herokuapp.com/',
+    'http://localhost:3000',
+  ],
+  optionsSuccessStatus: 204,
+};
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, '../build')));
@@ -16,25 +35,6 @@ app.use(express.static(path.join(__dirname, '../build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../build/index.html'));
 });
-
-const server = http.createServer(app);
-const io = require('socket.io')(server, {
-  cors: {
-    origin: [
-      'http://localhost:3000',
-      'https://gimibar-747b6688a2c4.herokuapp.com/',
-    ],
-    methods: ['GET', 'POST'],
-  },
-});
-
-const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-    'https://gimibar-747b6688a2c4.herokuapp.com/',
-  ],
-  optionsSuccessStatus: 204,
-};
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -62,6 +62,14 @@ app.use('/api/admin', adminRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter(io));
 app.use('/api/stripe', stripe);
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../build')));
+
+// Anything that doesn't match the above, send back the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../build/index.html'));
+});
 
 const port = process.env.PORT || 4000;
 
