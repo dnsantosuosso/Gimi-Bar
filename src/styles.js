@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
     color: '#000000',
   },
   root: {
-    transform: 'scale(0.8)', // Globally scale down everything
+    //transform: 'scale(0.8)', // Globally scale down everything
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
