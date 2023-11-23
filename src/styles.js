@@ -3,22 +3,29 @@ import { ImportantDevices } from '@material-ui/icons';
 
 const websiteColor = '#003080';
 export const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    overflowY: 'hidden',
-  },
   black: {
     backgroundColor: '#000000',
     color: '#000000',
   },
+  root: {
+    transform: 'scale(0.8)', // Globally scale down everything
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    overflowY: 'auto', // changed from 'hidden' to 'auto'
+  },
+
   main: {
     flex: 1,
-    overflowY: 'hidden',
+    overflowY: 'auto', // Allow scrolling if content overflows
     flexDirection: 'column',
     display: 'flex',
     color: '#ffffff',
+    padding: '10px', // Add some padding
+    [theme.breakpoints.down('sm')]: {
+      // Adjust styles for small screens
+      padding: '5px',
+    },
   },
   mainblack: {
     flex: 1,
@@ -297,5 +304,12 @@ export const useStyles = makeStyles((theme) => ({
   customDrawer: {
     width: '10%',
     transform: 'translateX(308.5%) !important',
+  },
+  container: {
+    transform: 'scale(1)', // Default scale
+    transformOrigin: 'top center', // Ensure scaling happens from the top
+    [theme.breakpoints.down('sm')]: {
+      //transform: 'scale(0.2) !important !important', // Scale down for small screens
+    },
   },
 }));

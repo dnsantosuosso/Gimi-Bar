@@ -28,67 +28,69 @@ export default function HomeScreen() {
   }, [navigate]);
 
   return (
-    <Card>
-      <CardActionArea
-        style={{ position: 'relative' }}
-        onClick={() => navigate('/order')}
-      >
-        <Box
-          className={[styles.root]}
-          style={{ backgroundColor: 'transparent' }}
+    <Box className={styles.container}>
+      <Card>
+        <CardActionArea
+          style={{ position: 'relative' }}
+          onClick={() => navigate('/order')}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transform: 'translate(-50%, -50%) scale(1.4)', // scale value of 1.2 will zoom the video by 20%
-            }}
-          >
-            <source src={'/homeVideo.mp4'} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <Box className={[styles.main, styles.center]} style={{ zIndex: 1 }}>
-            <Typography
-              component="h6"
-              variant="h6"
-              style={{ textShadow: '2px 2px 4px #000000' }}
-            >
-              Fast and Easy
-            </Typography>
-            <Typography
-              component="h2"
-              variant="h1"
-              style={{ textShadow: '2px 2px 4px #000000' }}
-            >
-              {fullText}
-            </Typography>
-            <TouchAppIcon
-              fontSize="large"
-              className={styles.touchIconAnimation}
-            />
-          </Box>
           <Box
-            className={[styles.center]}
-            style={{ zIndex: 1, padding: '20px' }}
+            className={[styles.root]}
+            style={{ backgroundColor: 'transparent' }}
           >
-            <Typography
-              component="h2"
-              variant="h3"
-              style={{ textShadow: '2px 2px 4px #000000' }}
+            <video
+              autoPlay
+              muted
+              loop
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                transform: 'translate(-50%, -50%) scale(1.4)', // scale value of 1.2 will zoom the video by 20%
+              }}
             >
-              Touch to start
-            </Typography>
+              <source src={'/homeVideo.mp4'} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            <Box className={[styles.main, styles.center]} style={{ zIndex: 1 }}>
+              <Typography
+                component="h6"
+                variant="h6"
+                style={{ textShadow: '2px 2px 4px #000000' }}
+              >
+                Fast and Easy
+              </Typography>
+              <Typography
+                component="h2"
+                variant="h1"
+                style={{ textShadow: '2px 2px 4px #000000' }}
+              >
+                {fullText}
+              </Typography>
+              <TouchAppIcon
+                fontSize="large"
+                className={styles.touchIconAnimation}
+              />
+            </Box>
+            <Box
+              className={[styles.center]}
+              style={{ zIndex: 1, padding: '20px' }}
+            >
+              <Typography
+                component="h2"
+                variant="h3"
+                style={{ textShadow: '2px 2px 4px #000000' }}
+              >
+                Touch to start
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-      </CardActionArea>
-    </Card>
+        </CardActionArea>
+      </Card>
+    </Box>
   );
 }
