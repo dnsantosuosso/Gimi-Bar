@@ -19,6 +19,7 @@ import CompleteOrderScreen from './Screens/CompleteOrderScreen';
 import AdminScreen from './Screens/AdminScreen';
 import QueueScreen from './Screens/QueueScreen';
 import OrderScreenPhone from './Screens/OrderScreenPhone';
+import OrderScreenPhoneReformat from './Screens/OrderScreenPhoneReformat';
 import LoginScreen from './Screens/LoginScreen';
 
 const theme = createTheme({
@@ -60,7 +61,11 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeScreen />} exact />
               <Route path="/choose" element={<ChooseScreen />} exact />
-              <Route path="/order" element={<OrderScreenPhone />} exact />
+              <Route
+                path="/order"
+                element={<OrderScreenPhoneReformat />}
+                exact
+              />
               <Route path="/order-kiosk" element={<OrderScreen />} exact />
               <Route path="/review" element={<ReviewScreen />} exact />
               <Route path="/payment" element={<PaymentScreen />} exact />
