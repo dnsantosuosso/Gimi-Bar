@@ -34,28 +34,7 @@ export default function HomeScreen() {
           style={{ position: 'relative' }}
           onClick={() => navigate('/order')}
         >
-          <Box
-            className={[styles.root]}
-            style={{ backgroundColor: 'transparent' }}
-          >
-            <video
-              autoPlay
-              muted
-              loop
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                transform: 'translate(-50%, -50%) scale(1.4)', // scale value of 1.2 will zoom the video by 20%
-              }}
-            >
-              <source src={'/homeVideo.mp4'} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
+          <Box className={[styles.root]} style={{ backgroundColor: 'black' }}>
             <Box className={[styles.main, styles.center]} style={{ zIndex: 1 }}>
               <Typography
                 component="h6"
