@@ -7,17 +7,39 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: '#000000',
     color: '#000000',
   },
+  // Define other styles here
+  customDrawer: {
+    // Adjust drawer styles for mobile
+  },
+  // Responsive styles for Grid items
+  responsiveGridItem: {
+    // Regular styles for larger screens can go here
+    padding: theme.spacing(2),
+    margin: theme.spacing(1),
+
+    [theme.breakpoints.down('sm')]: {
+      // Reduced padding and margin on small screens
+      padding: theme.spacing(1),
+      margin: theme.spacing(0.5),
+    },
+  },
+  // Add other responsive styles as needed
   root: {
-    //transform: 'scale(0.8)', // Globally scale down everything
-    height: '100vh',
+    maxWidth: '100%', // Ensures the container doesn't exceed the screen width
+    maxHeight: '90vh',
+    margin: '0 auto', // Centers the container
     display: 'flex',
     flexDirection: 'column',
-    overflowY: 'auto', // changed from 'hidden' to 'auto'
+    overflowY: 'hidden', // changed from 'hidden' to 'auto'
+    position: 'relative',
+    minHeight: '90vh',
   },
 
   main: {
+    maxWidth: '100%',
     flex: 1,
-    overflowY: 'auto', // Allow scrolling if content overflows
+    overflowY: 'hidden', // Allow scrolling if content overflows
+    overflowX: 'hidden', // Prevent horizontal scrolling
     flexDirection: 'column',
     display: 'flex',
     color: '#ffffff',
@@ -27,6 +49,7 @@ export const useStyles = makeStyles((theme) => ({
       padding: '5px',
     },
   },
+
   mainblack: {
     flex: 1,
     overflowY: 'hidden',
@@ -91,7 +114,8 @@ export const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   largeButton: {
-    width: 250,
+    margin: theme.spacing(0.3), // Add some margin
+    flex: 1, // Makes the buttons flexibly fill the space
     backgroundColor: websiteColor + '!important', //CHANGE COLOUR HERE TO DESIRED COLOUR
     color: 'white !important',
     '&:disabled': {
@@ -102,17 +126,14 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: '#5889b8 !important',
     },
   },
-  largeInput: {
-    width: '60px!important',
-    padding: '0!important',
-    fontSize: '30px!important',
-    textAlign: 'center!important',
-  },
+
   bordered: {
     borderWidth: 2,
     borderRadius: 5,
     margin: 5,
     borderStyle: 'solid',
+    height: '35px',
+    alignItems: 'center',
   },
   row: {
     display: 'flex',
@@ -125,9 +146,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   leftSpace: {
     marginLeft: '1rem', // adjust this as needed
-  },
-  space: {
-    padding: 10,
   },
   smallSpace: {
     padding: 5,
@@ -311,5 +329,25 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       //transform: 'scale(0.2) !important !important', // Scale down for small screens
     },
+  },
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0, // This ensures it extends to the full width
+    padding: theme.spacing(2),
+    backgroundColor: '#fff',
+    width: '100%', // Make sure this is set to 100%
+    boxSizing: 'border-box', // Ensures padding doesn't affect the overall width
+  },
+
+  borderlessCard: {
+    border: 'none',
+    boxShadow: 'none', // Removes the default shadow as well
+  },
+  quantityLabel: {
+    minWidth: '50px',
+    textAlign: 'center',
+    fontSize: '1.4rem',
   },
 }));

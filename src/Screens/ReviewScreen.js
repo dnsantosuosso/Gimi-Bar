@@ -252,32 +252,12 @@ export default function ReviewScreen(props) {
                               <RemoveIcon />
                             </Button>
 
-                            <TextField
-                              inputProps={{ className: styles.largeInput }}
-                              InputProps={{
-                                bar: true,
-                                inputProps: {
-                                  className: styles.largeInput,
-                                },
-                              }}
-                              className={styles.centerTextInput}
-                              style={{
-                                width: `${
-                                  quantities.hasOwnProperty(orderItem.name) &&
-                                  String(quantities[orderItem.name]).length > 1
-                                    ? 60
-                                    : 40
-                                }px`,
-                              }}
-                              type="number"
-                              variant="filled"
-                              min={0}
-                              value={
-                                quantities.hasOwnProperty(orderItem.name)
-                                  ? quantities[orderItem.name]
-                                  : 0
-                              }
-                            />
+                            <Typography
+                              className={styles.quantityLabel}
+                              component="p"
+                            >
+                              {quantities[orderItem.name] || 0}
+                            </Typography>
 
                             <Button
                               variant="contained"
@@ -392,7 +372,7 @@ export default function ReviewScreen(props) {
               disabled={orderItems.length === 0}
               className={styles.largeButton}
             >
-              Proceed To Checkout
+              Pay
             </Button>
           </Box>
         </Box>

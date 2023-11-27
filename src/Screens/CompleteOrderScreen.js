@@ -89,7 +89,7 @@ export default function CompleteOrderScreen(props) {
                 variant="h3"
                 component="h3"
               >
-                Thank you! Your order has been placed
+                Your order has been placed
               </Typography>
               <Typography
                 gutterBottom

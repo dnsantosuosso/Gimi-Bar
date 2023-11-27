@@ -280,78 +280,85 @@ export default function OrderScreen(props) {
       >
         {drawer}
       </Drawer> */}
-      <Box className={styles.main}>
-        <Grid container alignItems="center">
-          <Grid container alignItems="center" spacing={0}>
-            {/*Hamgurger Button*/}
-            {/* <IconButton onClick={() => setSidebarOpen(true)}>
+      <Grid
+        container
+        alignItems="center"
+        spacing={0}
+        className={styles.responsiveGridItem}
+      >
+        {/*Hamgurger Button*/}
+        {/* <IconButton onClick={() => setSidebarOpen(true)}>
               <MenuIcon />
             </IconButton> */}
 
-            {/* Logo */}
-            <Grid item xs={4}>
-              <Box ml={4}>
-                <Logo className={styles.Logo} />
-              </Box>
-            </Grid>
+        {/* Logo */}
+        <Grid item xs={4}>
+          <Box ml={4}>
+            <Logo className={styles.Logo} />
+          </Box>
+        </Grid>
 
-            {/* Search Bar */}
-            <Grid item xs={8} spacing={0}>
-              <Box className={styles.searchBox}>
-                <IconButton>
-                  <SearchIcon />
-                </IconButton>
-                <TextField
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search products..."
-                  variant="outlined"
-                  size="small"
-                />
-              </Box>
-            </Grid>
-          </Grid>
-
-          <Grid item md={12}>
-            <Grid item md={12}>
-              <Tabs
-                value={activeTab}
-                onChange={(event, newValue) => {
-                  setActiveTab(newValue);
-                  if (newValue === 0) {
-                    categoryClickHandler(''); // This is for the 'Main Menu'
-                  } else {
-                    categoryClickHandler(categories[newValue - 1].name);
-                  }
+        {/* Search Bar */}
+        <Grid item xs={8} spacing={0}>
+          <Box className={styles.searchBox}>
+            <IconButton>
+              <SearchIcon />
+            </IconButton>
+            <TextField
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search products..."
+              variant="outlined"
+              size="small"
+            />
+          </Box>
+        </Grid>
+      </Grid>
+      <Grid item md={12}>
+        <Grid item md={12}>
+          <Tabs
+            value={activeTab}
+            onChange={(event, newValue) => {
+              setActiveTab(newValue);
+              if (newValue === 0) {
+                categoryClickHandler(''); // This is for the 'Main Menu'
+              } else {
+                categoryClickHandler(categories[newValue - 1].name);
+              }
+            }}
+            centered
+            variant="scrollable"
+            scrollButtons="on"
+            classes={{ indicator: styles.tabIndicator }}
+          >
+            <Tab
+              classes={{
+                root: styles.customTabRoot,
+                selected: styles.selectedTab,
+                textColorInherit: styles.unselectedTab,
+              }}
+              label="Main Menu"
+            />
+            {categories.map((category, index) => (
+              <Tab
+                key={index}
+                classes={{
+                  root: styles.customTabRoot,
+                  selected: styles.selectedTab,
+                  textColorInherit: styles.unselectedTab,
                 }}
-                centered
-                variant="scrollable"
-                scrollButtons="on"
-                classes={{ indicator: styles.tabIndicator }}
-              >
-                <Tab
-                  classes={{
-                    root: styles.customTabRoot,
-                    selected: styles.selectedTab,
-                    textColorInherit: styles.unselectedTab,
-                  }}
-                  label="Main Menu"
-                />
-                {categories.map((category, index) => (
-                  <Tab
-                    key={index}
-                    classes={{
-                      root: styles.customTabRoot,
-                      selected: styles.selectedTab,
-                      textColorInherit: styles.unselectedTab,
-                    }}
-                    label={category.name}
-                  />
-                ))}
-              </Tabs>
-            </Grid>
-          </Grid>
-
+                label={category.name}
+              />
+            ))}
+          </Tabs>
+        </Grid>
+      </Grid>
+      <Box className={styles.main}>
+        <Grid
+          container
+          alignItems="center"
+          className={styles.responsiveGridItem}
+        >
           <Grid item md={12}>
             <Grid container spacing={0} className={styles.productsContainer}>
               {loadingProducts ? (
@@ -407,16 +414,6 @@ export default function OrderScreen(props) {
                             {product.name}
                           </Typography>
 
-                          {/* Alcohol */}
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                            style={{ width: '80px', marginRight: '16px' }}
-                          >
-                            {product.alcohol}% Alc
-                          </Typography>
-
                           {/* Price */}
                           <Typography
                             variant="body2"
@@ -435,7 +432,7 @@ export default function OrderScreen(props) {
                               styles.center,
                               styles.rightAlignedContainer,
                             ]}
-                            style={{ width: '120px' }} //Change this width to have elements closer or farther apart in the screen
+                            style={{ width: '80px' }} //Change this width to have elements closer or farther apart in the screen
                           >
                             <Button
                               variant="contained"
@@ -651,19 +648,43 @@ export default function OrderScreen(props) {
         </Grid>
       </Box>
       <Box>
-        <Box>
+        <Box className={styles.bottomContainer}>
           {itemsCount !== 0 && (
             <Box
               className={[styles.bordered, styles.space]}
               style={{ display: 'flex', justifyContent: 'space-between' }}
             >
               <div>
-                My Order | Tax: ${taxPrice || 0} | Total: ${totalPrice || 0} |
-                Items: {itemsCount || 0}
+                Total: ${totalPrice || 0} | Tax: ${taxPrice || 0} | Items:{' '}
+                {itemsCount || 0}
               </div>
               <IconButton
                 onClick={() => navigate('/review')}
                 className={styles.smallbutton}
+              >
+                <ShoppingCartIcon />
+              </IconButton>
+            </Box>
+          )}
+        </Box>
+        <Box className={styles.bottomContainer}>
+          {/* Conditional rendering based on itemsCount */}
+          {itemsCount !== 0 && (
+            <Box
+              className={[styles.bordered, styles.space]}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Typography variant="body2">
+                Total: ${totalPrice || 0} | Tax: ${taxPrice || 0} | Items:{' '}
+                {itemsCount || 0}
+              </Typography>
+              <IconButton
+                onClick={() => navigate('/review')}
+                className={styles.smallButton}
               >
                 <ShoppingCartIcon />
               </IconButton>

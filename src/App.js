@@ -12,13 +12,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './Screens/HomeScreen';
 import ChooseScreen from './Screens/ChooseScreen';
 import OrderScreen from './Screens/OrderScreen';
-import ReviewScreen from './Screens/ReviewScreen';
+import ReviewScreen from './Screens/ReviewScreen2';
 import SelectPaymentScreen from './Screens/SelectPaymentScreen';
 import PaymentScreen from './Screens/PaymentScreen';
 import CompleteOrderScreen from './Screens/CompleteOrderScreen';
 import AdminScreen from './Screens/AdminScreen';
 import QueueScreen from './Screens/QueueScreen';
-import OrderScreenPhone from './Screens/OrderScreenPhone';
+import OrderScreenPhone from './Screens/OrderScreenPhone2';
 import LoginScreen from './Screens/LoginScreen';
 
 const theme = createTheme({

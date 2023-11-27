@@ -23,6 +23,9 @@ const io = require('socket.io')(server, {
     origin: [
       'https://gimibar-new-c45af49f0979.herokuapp.com/',
       'http://localhost:4000',
+      'http://192.168.0.124:4000', // Add your IP address here
+      'http://192.168.5.140:4000', //Presse Cafe IP Address
+      'http://192.168.2.32:4000', //Presse Cafe IP Address
     ],
     methods: ['GET', 'POST'],
   },
