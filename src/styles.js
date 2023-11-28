@@ -78,8 +78,9 @@ export const useStyles = makeStyles((theme) => ({
   logo: {
     height: 50,
     width: '100px',
-    padding: '10px',
+    padding: '5px',
     marginRight: '10px',
+    marginTop: '10px',
   },
   navy: {
     backgroundColor: websiteColor,
@@ -143,6 +144,7 @@ export const useStyles = makeStyles((theme) => ({
   column: {
     display: 'flex !important',
     flexDirection: 'column !important',
+    marginTop: '40px',
   },
   leftSpace: {
     marginLeft: '1rem', // adjust this as needed
@@ -171,7 +173,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  smallbutton: {
+  smallButton: {
     width: 50,
     height: 20,
     color: websiteColor + '!important', //CHANGE COLOUR HERE TO DESIRED COLOUR
@@ -287,6 +289,12 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end !important',
     margin: '10px',
+    // Add the following to target the TextField focus style
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: websiteColor,
+      },
+    },
   },
   productsContainer: {
     overflowY: 'auto',
@@ -349,5 +357,16 @@ export const useStyles = makeStyles((theme) => ({
     minWidth: '50px',
     textAlign: 'center',
     fontSize: '1.4rem',
+  },
+  form: {
+    // Add the following to target the TextField focus style
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: websiteColor,
+      },
+    },
+    '& .MuiInputLabel-outlined.Mui-focused': {
+      color: websiteColor, // This will change the label color to black when focused
+    },
   },
 }));

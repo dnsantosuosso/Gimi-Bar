@@ -33,7 +33,7 @@ export default function LoginScreen() {
         navigate('/admin');
       }
     } catch (err) {
-      setError(err.message);
+      setError('Incorrect username or password');
       setLoading(false);
     }
   };

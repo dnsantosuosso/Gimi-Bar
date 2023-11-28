@@ -162,7 +162,7 @@ export default function ReviewScreen(props) {
           {orderItems.map((orderItem) => (
             <Grid item xs={12} key={orderItem.name}>
               <Card elevation={0} className={styles.cardrect}>
-                <CardActionArea>
+                <CardActionArea disableRipple>
                   <CardContent
                     style={{
                       display: 'flex',

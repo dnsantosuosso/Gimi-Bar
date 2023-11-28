@@ -268,8 +268,8 @@ export default function OrderScreen(props) {
       >
         {/* Logo */}
         <Grid item xs={4}>
-          <Box ml={4}>
-            <Logo className={styles.Logo} />
+          <Box>
+            <Logo className={styles.logo} />
           </Box>
         </Grid>
 
