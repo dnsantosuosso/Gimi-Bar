@@ -149,7 +149,7 @@ export default function AdminScreen(props) {
           onError={handleError}
           onScan={handleScan}
           style={{ width: '100%' }}
-          facingMode={'environment'} // Use the back camera
+          constraints={{ facingMode: { exact: 'environment' } }} // Use the back camera
         />
       )}
       <title>Admin Orders</title>
