@@ -369,4 +369,7 @@ export const useStyles = makeStyles((theme) => ({
       color: websiteColor, // This will change the label color to black when focused
     },
   },
+  barcodeBox: {
+    marginTop: '40px',
+  },
 }));

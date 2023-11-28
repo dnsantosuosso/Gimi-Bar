@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Drawer,
   List,
@@ -10,6 +10,7 @@ import { logoutUser } from '../actions';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 import { listOrders } from '../actions';
+import { QrReader } from 'react-qr-reader'; // Change this line
 import {
   Box,
   Button,
@@ -63,6 +64,30 @@ export default function AdminScreen(props) {
     };
   }, [dispatch, navigate, user]);
 
+  const [showScanner, setShowScanner] = useState(false); // State to toggle scanner visibility
+  const [scannedOrderId, setScannedOrderId] = useState(null); // State to store scanned order ID
+
+  // Handler for QR code scan
+  const handleScan = (data) => {
+    if (data) {
+      setScannedOrderId(data);
+      setShowScanner(false);
+      // Logic to find order and call setOrderStateHandler
+      const order = orders.find((o) => o._id === data);
+      if (order) {
+        setOrderStateHandler(order, 'deliver');
+      }
+    }
+  };
+
+  const handleError = (err) => {
+    console.error(err);
+  };
+
+  const toggleScanner = () => {
+    setShowScanner(!showScanner);
+  };
+
   const setOrderStateHandler = async (order, action) => {
     try {
       await Axios.post('/api/orders/action/' + order._id, { action: action });
@@ -107,11 +132,25 @@ export default function AdminScreen(props) {
           <ListItem button onClick={handleLogout}>
             <ListItemText primary="Logout" />
           </ListItem>
+          <ListItem button onClick={toggleScanner}>
+            <ListItemText
+              primary={showScanner ? 'Hide Scanner' : 'Scan Order'}
+            />
+          </ListItem>
+
           {/* <ListItem button onClick={handleMenu}>
             <ListItemText primary="Edit Menu" />
           </ListItem> */}
         </List>
       </Drawer>
+      {showScanner && (
+        <QrReader
+          delay={300}
+          onError={handleError}
+          onScan={handleScan}
+          style={{ width: '100%' }}
+        />
+      )}
       <title>Admin Orders</title>
 
       <Box className={[styles.main]}>

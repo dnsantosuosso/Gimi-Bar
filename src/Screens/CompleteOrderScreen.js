@@ -5,6 +5,7 @@ import Logo from '../Components/Logo';
 import { Store } from '../Store';
 import { Alert } from '@material-ui/lab';
 import { useNavigate } from 'react-router-dom';
+import QRCode from 'qrcode.react'; // Importing QRCode library
 export default function CompleteOrderScreen(props) {
   const styles = useStyles();
   const { state, dispatch } = useContext(Store);
@@ -20,6 +21,20 @@ export default function CompleteOrderScreen(props) {
 
   // Extract orderId from the URL
   const orderId = new URLSearchParams(window.location.search).get('orderId');
+
+  const renderBarcode = () => {
+    if (fetchedOrder && fetchedOrder.number) {
+      return (
+        <QRCode
+          value={`order_id:${orderId}`} // Encoding order number in QR code
+          size={128}
+          level={'H'}
+          includeMargin={true}
+        />
+      );
+    }
+    return null;
+  };
 
   useEffect(() => {
     const fetchOrderAndUpdate = async () => {
@@ -113,6 +128,7 @@ export default function CompleteOrderScreen(props) {
                   <strong>{fetchedOrder?.password}</strong>
                 </span>
               </Typography>
+              <Box className={styles.barcodeBox}>{renderBarcode()}</Box>
             </>
           )}
         </Box>
