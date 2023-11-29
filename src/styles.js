@@ -372,4 +372,45 @@ export const useStyles = makeStyles((theme) => ({
   barcodeBox: {
     marginTop: '40px',
   },
+  uniformButton: {
+    minWidth: '100px', // adjust this value as needed
+  },
+  uniformButtonMobile: {
+    minWidth: '90px !important',
+  },
+  // Style for AppBar color on mobile devices
+  appBarMobile: {
+    backgroundColor: '#003080 !important',
+  },
+  mobileTableCell: {
+    [theme.breakpoints.down('sm')]: {
+      padding: '8px 2px', // Adjust these values as needed
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+    },
+  },
+  regularTableCell: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  primary: {
+    backgroundColor: websiteColor + '!important',
+    color: 'white !important',
+  },
+  secondary: {
+    backgroundColor: '#5889b8 !important',
+    color: 'white !important',
+  },
+  tertiary: {
+    backgroundColor: '#02151c !important',
+    color: 'white !important',
+  },
+  expandButton: {
+    // Your custom styles for the expand button
+    minWidth: 'auto',
+    padding: '0',
+    marginLeft: theme.spacing(1),
+  },
 }));

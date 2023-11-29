@@ -3,6 +3,17 @@ const products = require('./product.model.js');
 
 const Schema = mongoose.Schema;
 
+const adminSchema = new mongoose.Schema({
+  admin: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  adminRestaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'bars' }, //specifies where the admin works
+  adminRole: String,
+  adminTips: Number, //tips that admin has made
+  adminRating: Number,
+});
+
 //User Model: borrowed code from Sunsational Shades
 const userSchema = new Schema(
   {
@@ -11,7 +22,7 @@ const userSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false, required: true },
-    adminRestaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'bars' },
+    adminDetails: [adminSchema],
     loyaltyPoints: { type: Number, required: true },
     pastOrders: [
       {
@@ -27,11 +38,14 @@ const userSchema = new Schema(
         required: true,
       },
     ],
+    profilePhoto: String,
   },
   {
     timestamps: true,
   }
 );
+
+//Create Sub-Schema for admins: restaurant, role, tips, efficiency, rating,
 
 //Methods to get cart price of user schema
 userSchema.methods.getCartPrice = async (cust) => {

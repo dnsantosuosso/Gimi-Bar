@@ -469,7 +469,7 @@ export default function OrderScreen(props) {
                   </Grid>
                 ))
               )}
-              <div style={{ height: '215px' }}></div>{' '}
+              <div style={{ height: '220px' }}></div>{' '}
             </Grid>
             <Dialog
               open={open}

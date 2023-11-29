@@ -15,6 +15,7 @@ const barSchema = new mongoose.Schema({
     },
   },
   menu: [{ type: mongoose.Schema.Types.ObjectId, ref: 'menus' }],
+  availableBars: [String], //list of available bars in the venue: e/g first floor bar, dance floor bar, etc
   cellphone: String,
   email: String,
   rating: Number, //autopopulate from API: Google Reviews?
@@ -26,7 +27,7 @@ const barSchema = new mongoose.Schema({
   street: String, //autopopulate from API: will create dependency??
   localCurrency: String, //autopopulate from API: will create dependency?? Maybe this one can be hardcoded / built from scratch
   serviceFee: Number,
-  licenseNumber: String, //must be validated
+  licenseNumber: String, //Alcohol's license Number: must be validated
 });
 
 //TODO: Do method to populate local currency based on location of bar - find API or build it from scratch.
